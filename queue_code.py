@@ -48,4 +48,7 @@ class Queue:
     def dequeue(self):
         return self._elements.popleft()
             
-     
+    # Stack class
+class Stack(Queue):
+    def dequeue(self):
+        return self._elements.pop()
