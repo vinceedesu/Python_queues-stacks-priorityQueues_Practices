@@ -18,5 +18,9 @@ class Queue:
 
     def enqueue(self, element):
         self._elements.append(element)
-        
+    
+    # popleft() removes an element from the left side of the deque and returns the value.   
+    def dequeue(self):
+        return self._elements.popleft()
+    
     
