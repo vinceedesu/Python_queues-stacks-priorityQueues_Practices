@@ -30,4 +30,13 @@ class Queue:
     def __init__(self, *elements):
         self._elements = deque(elements)
         
+    # The Python __len__ method returns a positive integer that represents the length of the object on which it is called.
+    def __len__(self):
+        return len(self._elements)
+    
+    # The __iter__() function returns an iterator object that goes through each element of the given object
+    def __iter__(self):
+        while len(self) > 0:
+            yield self.dequeue()
+            
      
