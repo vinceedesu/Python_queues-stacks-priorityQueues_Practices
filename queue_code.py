@@ -1,6 +1,8 @@
 # Queue: First-In, First-Out (FIFO)
 # queues.py
 
+#source: https://realpython.com/queue-in-python/#learning-about-the-types-of-queues
+
 from collections import deque
 
 class Queue:
@@ -38,5 +40,12 @@ class Queue:
     def __iter__(self):
         while len(self) > 0:
             yield self.dequeue()
+    
+    #Here is the function from the previous code
+    def enqueue(self, element):
+        self._elements.append(element)
+        
+    def dequeue(self):
+        return self._elements.popleft()
             
      
