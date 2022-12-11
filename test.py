@@ -14,6 +14,7 @@ messages.enqueue_with_priority(IMPORTANT, "Hazard lights turned on")
 
 messages.dequeue()
 
+# ====================================================================
 #stack terminal/python command 
 from heapq import heappush
 
@@ -31,3 +32,6 @@ person3 = ("John", "Doe", 24)
 person1 < person2
 
 person2 < person3
+
+# ====================================================================
+
