@@ -3,6 +3,9 @@ import argparse
 #queue is a library for queues and the likes
 from queue import LifoQueue, PriorityQueue, Queue
 
+#added threading
+import threading
+
 #dictionary for queues
 QUEUE_TYPES = {
     "fifo": Queue,
@@ -51,5 +54,15 @@ PRODUCTS = (
     ":yo-yo:",
 )
 
-    
+
+#added class worker 
+class Worker(threading.Thread):
+    def __init__(self,speed, buffer):
+        super().__init__(daemon=True)
+        self.speed = speed
+        self.buffer = buffer
+        self.product = None
+        self.working = False
+        self.progress = 0
+
     
