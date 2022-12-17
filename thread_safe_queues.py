@@ -7,7 +7,8 @@ from queue import LifoQueue, PriorityQueue, Queue
 import threading
 
 #added sleep and randint
-from random import randint, choice
+from random import randint
+from random import choice
 from time import sleep
 
 #dictionary for queues
@@ -20,6 +21,23 @@ QUEUE_TYPES = {
 
 def main(args):
     buffer = QUEUE_TYPES[args.queue]()
+    producers = [
+        Producer(args.producer_speed, buffer, PRODUCTS)
+        for _ in range(args.producers)
+    ]
+    consumers = [
+        Consumer(args.consumer_speed, buffer) for _ in range(args.consumers)
+    ]
+
+    for producer in producers:
+        producer.start()
+
+    for consumer in consumers:
+        consumer.start()
+
+    view = view(buffer, producers, consumers)
+    view.animate()
+      
     
 def parse_args():
     #The argparse module also automatically generates help and usage messages. The module will also issue errors when users give the program invalid argumentsThe argparse module also automatically generates help and usage messages. The module will also issue errors when users give the program invalid arguments
@@ -30,6 +48,7 @@ def parse_args():
     parser.add_argument("-ps", "--producer-speed", type=int, default=1)
     parser.add_argument("-cs", "--consumer-speed", type=int, default=1)
     return parser.parse_args()
+
 
 #dont know what this does... 
 if __name__ == "__main__":
@@ -108,9 +127,4 @@ class Consumer(Worker):
             self.simulate_work()
             self.buffer.task_done()
             self.simulate_idle()
-        
-            
-  
 
-
-    
